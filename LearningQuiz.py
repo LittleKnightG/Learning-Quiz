@@ -118,7 +118,7 @@ class QuizApp:
         self.answer_error_label = Label(add_question_frame, text="Please enter a valid answer", bg='#d8f5f5', fg='red', font=('Arial', 14))
         self.answer_error_label.grid_remove()
       
-        self.status_label = Label(add_question_frame, text="Question and answer added successfully.",fg="green", font=('Arial', 14), bg='#d8f5f5')
+        self.status_label = Label(add_question_frame, text="",fg="green", font=('Arial', 14), bg='#d8f5f5')
         self.status_label.grid_remove()
         
         # Hover effect for the submit button
@@ -207,6 +207,9 @@ class QuizApp:
             json.dump(existingFlashCards, f, indent=4, cls=flashCardEncoder)
             
              # Show a success message to the user
+            totalRecords = len(existingFlashCards)
+            message = "Question and answer added successfully. Now total questions are:" + str(totalRecords)  
+            self.status_label.config(text= message)
             self.status_label.grid(row=4, column=2, sticky="W")
 
         # Reset the subject, question, and answer widgets
